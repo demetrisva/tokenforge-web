@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TLS / certificate inspector — Tokenforge</title>
+<meta name="description" content="Inspect a host's TLS certificate: issuer, expiry, SANs and negotiated protocol. Read-only lookup, no logs.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%94%A5</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="/"><span class="mark">&gt;_</span> tokenforge</a>
+    <nav class="site"><a href="/tools/">Tools</a><a href="https://status.tokenforge.eu">Status</a></nav>
+  </header>
+
+  <p class="crumb"><a href="/tools/">Tools</a> / TLS inspector</p>
+  <section class="hero" style="padding:1.2rem 0 .5rem">
+    <h1>TLS / certificate inspector</h1>
+    <p>Check a host's certificate — issuer, expiry, alternate names and the negotiated
+       protocol. The connection is made from our server; we keep no logs.</p>
+  </section>
+
+  <div class="tool">
+    <label for="host">Host</label>
+    <input id="host" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="example.com">
+    <button id="run">Inspect</button>
+    <div id="error" class="out" style="display:none;color:var(--bad)"></div>
+  </div>
+
+  <div id="result"></div>
+
+  <footer class="site">
+    <span>tokenforge.eu</span>
+    <span><a href="/tools/">tools</a> · <a href="/">home</a></span>
+  </footer>
+</div>
+<script src="/assets/api.js"></script>
+<script src="/assets/ssl.js"></script>
+</body>
+</html>

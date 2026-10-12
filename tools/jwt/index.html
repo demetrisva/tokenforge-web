@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JWT decoder — Tokenforge</title>
+<meta name="description" content="Decode a JSON Web Token (JWT) in your browser. Header, claims and expiry are parsed locally — the token is never sent anywhere.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%94%A5</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="/"><span class="mark">&gt;_</span> tokenforge</a>
+    <nav class="site">
+      <a href="/tools/">Tools</a>
+      <a href="https://status.tokenforge.eu">Status</a>
+    </nav>
+  </header>
+
+  <p class="crumb"><a href="/tools/">Tools</a> / JWT decoder</p>
+  <section class="hero" style="padding:1.2rem 0 .5rem">
+    <h1>JWT decoder</h1>
+    <p>Paste a JSON Web Token to see its header and claims. Everything happens in your
+       browser — the token is <strong>never sent to any server</strong>, and this tool
+       does not verify the signature (it has no keys).</p>
+  </section>
+
+  <div class="tool">
+    <label for="jwt">Token</label>
+    <textarea id="jwt" spellcheck="false" autocomplete="off"
+      placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwibmFtZSI6IkRpbWlzIn0.xxxxx"></textarea>
+    <button id="decode">Decode</button>
+    <button id="clear" class="secondary">Clear</button>
+    <div id="error" class="out" style="display:none;color:var(--bad)"></div>
+  </div>
+
+  <div id="result" style="display:none">
+    <div class="tool">
+      <h3 style="margin:.1rem 0 .3rem">Header</h3>
+      <pre id="header"></pre>
+    </div>
+    <div class="tool">
+      <h3 style="margin:.1rem 0 .3rem">Payload (claims)</h3>
+      <pre id="payload"></pre>
+      <table class="kv" id="claims"></table>
+    </div>
+    <div class="tool">
+      <h3 style="margin:.1rem 0 .3rem">Signature</h3>
+      <p class="note">Base64url signature, shown for reference. Verifying it needs the
+         issuer's secret or public key, which this tool intentionally does not have.</p>
+      <pre id="signature"></pre>
+    </div>
+  </div>
+
+  <footer class="site">
+    <span>tokenforge.eu</span>
+    <span><a href="/tools/">tools</a> · <a href="/">home</a></span>
+  </footer>
+</div>
+
+<script src="/assets/jwt.js"></script>
+</body>
+</html>

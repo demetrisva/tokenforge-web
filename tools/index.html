@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tools — Tokenforge</title>
+<meta name="description" content="Free security and network tools: JWT decoder, email authentication (SPF/DKIM/DMARC) check, TLS inspector and more.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%94%A5</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="/"><span class="mark">&gt;_</span> tokenforge</a>
+    <nav class="site">
+      <a href="/tools/">Tools</a>
+      <a href="https://status.tokenforge.eu">Status</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding-bottom:1rem">
+    <h1>Tools</h1>
+    <p>Tools marked <span class="tag local">in your browser</span> run entirely on your
+       device — nothing is sent anywhere. Tools marked <span class="tag api">server lookup</span>
+       run a read-only lookup on our server and keep no logs.</p>
+  </section>
+
+  <div class="grid">
+    <a class="card" href="/tools/jwt/">
+      <h3>JWT decoder</h3>
+      <p>Decode and inspect a JSON Web Token's header, claims and expiry.</p>
+      <span class="tag local">in your browser</span>
+    </a>
+    <a class="card" href="/tools/spf-dmarc/">
+      <h3>Email auth check</h3>
+      <p>SPF, DKIM, DMARC and MTA-STS for a domain, with fixes.</p>
+      <span class="tag api">server lookup</span>
+    </a>
+    <a class="card" href="/tools/ssl/">
+      <h3>TLS / certificate inspector</h3>
+      <p>Certificate chain, expiry, protocols and issuer for a host.</p>
+      <span class="tag api">server lookup</span>
+    </a>
+  </div>
+
+  <footer class="site">
+    <span>tokenforge.eu</span>
+    <span><a href="/">home</a> · <a href="https://status.tokenforge.eu">status</a></span>
+  </footer>
+</div>
+</body>
+</html>

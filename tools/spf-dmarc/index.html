@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Email auth check (SPF / DKIM / DMARC) — Tokenforge</title>
+<meta name="description" content="Check a domain's SPF, DMARC and MTA-STS email-authentication records and get plain-English fixes.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%94%A5</text></svg>">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="brand" href="/"><span class="mark">&gt;_</span> tokenforge</a>
+    <nav class="site"><a href="/tools/">Tools</a><a href="https://status.tokenforge.eu">Status</a></nav>
+  </header>
+
+  <p class="crumb"><a href="/tools/">Tools</a> / Email auth check</p>
+  <section class="hero" style="padding:1.2rem 0 .5rem">
+    <h1>Email authentication check</h1>
+    <p>Look up a domain's <strong>SPF</strong>, <strong>DMARC</strong> and
+       <strong>MTA-STS</strong> records and see what to fix. The lookup runs on our
+       server against public DNS; we keep no logs.</p>
+  </section>
+
+  <div class="tool">
+    <label for="domain">Domain</label>
+    <input id="domain" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="example.com">
+    <button id="run">Check</button>
+    <div id="error" class="out" style="display:none;color:var(--bad)"></div>
+  </div>
+
+  <div id="result"></div>
+
+  <footer class="site">
+    <span>tokenforge.eu</span>
+    <span><a href="/tools/">tools</a> · <a href="/">home</a></span>
+  </footer>
+</div>
+<script src="/assets/api.js"></script>
+<script src="/assets/spf.js"></script>
+</body>
+</html>

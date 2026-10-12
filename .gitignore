@@ -1,0 +1,4 @@
+node_modules/
+package*.json
+_shot.mjs
+.DS_Store
