@@ -35,6 +35,7 @@
       if (r.mx && r.mx.length) {
         out += '<div class="tool"><h3 style="margin:.1rem 0 .4rem">MX</h3><pre>' + esc(r.mx.join("\n")) + '</pre></div>';
       }
+      if(r.note)out+='<p class="note">'+esc(r.note)+'</p>';
       $("result").innerHTML = out;
     } catch (e) {
       $("error").textContent = e.message + " — if this persists the lookup service may be starting up; try again shortly.";

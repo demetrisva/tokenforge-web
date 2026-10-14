@@ -7,13 +7,14 @@
 <meta name="description" content="A small forge of free, privacy-respecting security and network tools: JWT, DNS, email auth (SPF/DKIM/DMARC), TLS and more.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%94%A5</text></svg>">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="canonical" href="https://www.tokenforge.eu//">
 </head>
 <body>
 <div class="wrap">
   <header class="site">
     <a class="brand" href="/"><span class="mark">&gt;_</span> tokenforge</a>
     <nav class="site">
-      <a href="/tools/">Tools</a>
+      <a href="/tools/">Tools</a><a href="/docs/">Docs</a><a href="/blog/">Build notes</a>
       <a href="https://status.tokenforge.eu">Status</a>
     </nav>
   </header>
@@ -22,23 +23,26 @@
     <div class="tagline">// forge tokens, inspect traffic, check your setup</div>
     <h1>Free <span class="fg">security &amp; network</span> tools that respect your privacy.</h1>
     <p>A small, honest toolbox for admins and developers. Browser-only tools never
-       send your data anywhere. Lookup tools run on our own server and keep no logs.</p>
+       send your input anywhere. Public DNS and HTTPS lookup tools run on our server.</p>
   </section>
 
   <h2 class="section">Tools</h2>
-  <div class="grid" id="tools-grid">
-    <a class="card" href="/tools/jwt/">
-      <h3>JWT decoder</h3>
-      <p>Decode and inspect a JSON Web Token's header, claims and expiry.</p>
-      <span class="tag local">in your browser</span>
-    </a>
-  </div>
+  <div class="grid"><a class="card" href="/tools/jwt/"><h3>JWT decoder</h3><p>Inspect headers and claims; signatures are not verified.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/cidr/"><h3>CIDR / subnet calculator</h3><p>Calculate IPv4 network boundaries, masks and usable addresses.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/password/"><h3>Password generator</h3><p>Generate random passwords with your browser’s cryptographic random source. The length must be 12–128 characters.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/base64/"><h3>Base64 encoder / decoder</h3><p>Encode and decode UTF-8 text. Base64 is encoding, not encryption.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/hash/"><h3>Text hash calculator</h3><p>Calculate a SHA-256, SHA-384 or SHA-512 digest locally. A plain hash is not password storage.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/cron/"><h3>Cron field explainer</h3><p>Validate and describe standard numeric five-field cron expressions.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/mikrotik/"><h3>MikroTik address-list helper</h3><p>Generate a reviewable RouterOS address-list command. This does not change your router or firewall rules.</p><span class="tag local">in your browser</span></a>
+<a class="card" href="/tools/dns/"><h3>DNS lookup</h3><p>Read a public IPv4 DNS answer from one resolver. This is not a worldwide propagation test.</p><span class="tag api">server lookup</span></a>
+<a class="card" href="/tools/headers/"><h3>HTTPS header check</h3><p>Check common response-header presence on the HTTPS root page. Redirects are not followed; presence alone does not prove a secure configuration.</p><span class="tag api">server lookup</span></a>
+<a class="card" href="/tools/spf-dmarc/"><h3>Email authentication</h3><p>Discover SPF, DMARC, MX and MTA-STS DNS records.</p><span class="tag api">server lookup</span></a>
+<a class="card" href="/tools/ssl/"><h3>TLS inspector</h3><p>Inspect a verified HTTPS certificate and connection.</p><span class="tag api">server lookup</span></a></div>
 
-  <p class="muted" style="font-size:.9rem">More tools are being added: DNS &amp; propagation,
-     security-header grader, CIDR calculator, password generator and more.</p>
+  <p class="muted">Lookup results are informational and are not a vulnerability assessment. <a href="/docs/">How the tools work</a>.</p>
 
   <footer class="site">
-    <span>tokenforge.eu — built in the open.</span>
+    <span><a href="https://github.com/demetrisva/tokenforge-web">tokenforge.eu — built in the open.</a></span>
     <span><a href="https://status.tokenforge.eu">status</a> · <a href="/tools/">tools</a></span>
   </footer>
 </div>

@@ -1,0 +1,12 @@
+import {cidr,password,base64,hash,cron,mikrotik,passphrase} from './toolkit.mjs';
+const $=id=>document.getElementById(id),kind=document.body.dataset.tool;
+$('run').addEventListener('click',async()=>{try{const v=$('input').value;let result;
+if(kind==='cidr')result=JSON.stringify(cidr(v),null,2);
+if(kind==='password')result=$('mode').value==='passphrase'?passphrase(Number(v)):password(Number(v));
+if(kind==='base64')result=base64(v,$('mode').value==='decode');
+if(kind==='hash')result=await hash(v,$('mode').value);
+if(kind==='cron')result=cron(v);
+if(kind==='mikrotik')result=mikrotik(v);
+$('output').textContent=result;$('output').setAttribute('role','status');
+}catch(e){$('output').textContent=e.message;}});
+$('clear').addEventListener('click',()=>{$('input').value='';$('output').textContent='';});
