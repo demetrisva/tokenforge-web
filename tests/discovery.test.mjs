@@ -1,3 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {categories,matches} from '../assets/tool-discovery.mjs';
 test('search combines case-insensitive words and category',()=>{assert.ok(matches('CIDR subnet calculator','  SUBNET cidr ','Network','Network'));assert.ok(!matches('CIDR subnet calculator','cidr','Security','Network'));assert.ok(!matches('CIDR calculator','unmatched','','Network'));});
 test('all tool links have categories and accessible enhancement loading',()=>{const html=fs.readFileSync(new URL('../tools/index.html',import.meta.url),'utf8');const slugs=[...html.matchAll(/class="card" href="\/tools\/([^/]+)\//g)].map(x=>x[1]);assert.equal(slugs.length,17);for(const slug of slugs){assert.ok(categories[slug]);const page=fs.readFileSync(new URL(`../tools/${slug}/index.html`,import.meta.url),'utf8');assert.ok(page.includes('/assets/enhancements.mjs'));}assert.ok(!html.includes('/tools//'));});
+
+import {resultBlob} from '../assets/result-export.mjs';import {base64} from '../assets/toolkit.mjs';
+test('download preserves decoded whitespace and exact trailing bytes',async()=>{for(const input of ['IA==','ICBIZWxsbyAg','SGVsbG8K']){const decoded=base64(input,true);assert.equal(await resultBlob(decoded).text(),decoded);}assert.equal(await resultBlob(base64('IA==',true)).text(),' ');});

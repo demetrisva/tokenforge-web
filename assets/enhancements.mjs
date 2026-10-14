@@ -1,3 +1,4 @@
+import {resultBlob} from './result-export.mjs';
 import {categories,matches} from './tool-discovery.mjs';
 const cards=[...document.querySelectorAll('.grid a.card[href^="/tools/"]')];
 if(cards.length){
@@ -20,8 +21,8 @@ if(input && slug in examples){
  const status=document.createElement('span');status.setAttribute('role','status');
  const button=(text,fn)=>{const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent=text;b.addEventListener('click',fn);bar.append(b);};
  button('Load example',()=>{input.value=examples[slug];const mode=document.getElementById('mode');if(mode)mode.selectedIndex=0;input.dispatchEvent(new Event('input',{bubbles:true}));status.textContent='Example loaded. Run the tool when ready.';input.focus();});
- const output=()=>{const plain=document.getElementById('output');if(plain)return plain.innerText.trim();const result=document.getElementById('result');return result?.checkVisibility()?result.innerText.trim():'';};
+ const output=()=>{const plain=document.getElementById('output');if(plain)return plain.textContent;const result=document.getElementById('result');return result?.checkVisibility()?result.innerText:'';};
  button('Copy result',async()=>{const text=output();if(!text){status.textContent='Run the tool first.';return;}try{await Promise.race([navigator.clipboard.writeText(text),new Promise((_,reject)=>setTimeout(()=>reject(Error('Clipboard timed out')),2000))]);status.textContent='Result copied.';}catch{status.textContent='Clipboard unavailable. Select and copy the result manually.';}});
- button('Download result',()=>{const text=output();if(!text){status.textContent='Run the tool first.';return;}const url=URL.createObjectURL(new Blob([text+'\n'],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`tokenforge-${slug}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='Result downloaded.';});
+ button('Download result',()=>{const text=output();if(!text){status.textContent='Run the tool first.';return;}const url=URL.createObjectURL(resultBlob(text));const a=document.createElement('a');a.href=url;a.download=`tokenforge-${slug}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='Result downloaded.';});
  bar.append(status);input.closest('.tool')?.append(bar);
 }
