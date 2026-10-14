@@ -1,0 +1,12 @@
+import {jsonFormat,urlCode,uuids,timestamp,textHex,rangeCidr} from './extra-tools.mjs';
+const $=id=>document.getElementById(id),kind=document.body.dataset.tool;
+$('run').addEventListener('click',()=>{try{const value=$('input').value,mode=$('mode')?.value;let result;
+if(kind==='json')result=jsonFormat(value,mode==='compact');
+if(kind==='url')result=urlCode(value,mode==='decode');
+if(kind==='uuid')result=uuids(value);
+if(kind==='timestamp')result=timestamp(value,mode);
+if(kind==='hex')result=textHex(value,mode==='decode');
+if(kind==='range')result=rangeCidr(value);
+$('output').textContent=result;
+}catch(e){$('output').textContent='Error: '+e.message;}});
+$('clear').addEventListener('click',()=>{$('input').value='';$('output').textContent='';});
