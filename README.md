@@ -47,3 +47,5 @@ The site now includes local CIDR, random-password, UTF-8 Base64, SHA-2 hashing, 
 Run `node --test tests/*.test.mjs` before publishing. Backend-dependent cards must only ship after the API route passes live browser tests. GitHub pushes to `main` publish automatically through Cloudflare.
 
 The active Cloudflare project uses Workers Builds. `wrangler.json` supplies static-asset and Preview configuration; `.assetsignore` excludes tests and configuration from the public asset bundle. Backend CORS permits production hostnames only, so lookup forms are tested on the production origin after deployment.
+
+Additional local tools: JSON formatting/minification, URL component encoding, UUID v4 generation, Unix/ISO timestamp conversion, UTF-8 hex conversion and exact IPv4 range-to-CIDR summarisation. Run `node --test tests/*.test.mjs` to validate.
