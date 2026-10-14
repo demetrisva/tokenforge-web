@@ -1,7 +1,7 @@
 # tokenforge-web
 
 The public site at **tokenforge.eu** — a small toolbox of security and network tools.
-Static files, no build step, deployed to **Cloudflare Pages**. The backend for the
+Static files, no build step, deployed to **Cloudflare Workers static assets**. The backend for the
 server-lookup tools lives separately in `tokenforge-infra` (stack `tools-api`,
 served at `api.tokenforge.eu`).
 
@@ -12,7 +12,7 @@ tools/jwt/            JWT decoder        (runs entirely in the browser)
 tools/spf-dmarc/      email auth check   (calls api.tokenforge.eu)
 tools/ssl/            TLS inspector      (calls api.tokenforge.eu)
 assets/               css + per-tool js
-_headers              Cloudflare Pages security headers (CSP, HSTS, …)
+_headers              Cloudflare Workers static assets security headers (CSP, HSTS, …)
 robots.txt
 ```
 
@@ -27,7 +27,7 @@ robots.txt
   the Content-Security-Policy, HSTS and the rest, so the site passes its own header
   grader.
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers static assets)
 
 1. Cloudflare dashboard → **Workers &amp; Pages → Create → Pages → Connect to Git**.
 2. Pick this repo. Framework preset **None**, build command **empty**, output dir **/**.
@@ -47,3 +47,5 @@ Every push to `main` publishes automatically. There is no build to break.
 The site now includes local CIDR, random-password, UTF-8 Base64, SHA-2 hashing, numeric cron-field and RouterOS address-list helpers, plus bounded DNS and HTTPS-header lookups. Lookup limits and privacy behavior are documented at `/docs/`. Header presence is not a certification; DNS is a single resolver view; email checks discover records rather than implementing a full SPF evaluator. TLS only connects to validated public IPv4 addresses on port 443 and verifies certificates. `www.tokenforge.eu` is canonical.
 
 Run `node --test tests/*.test.mjs` before publishing. Backend-dependent cards must only ship after the API route passes live browser tests. GitHub pushes to `main` publish automatically through Cloudflare.
+
+The active Cloudflare project uses Workers Builds. `wrangler.json` supplies static-asset and Preview configuration; `.assetsignore` excludes tests and configuration from the public asset bundle. Backend CORS permits production hostnames only, so lookup forms are tested on the production origin after deployment.

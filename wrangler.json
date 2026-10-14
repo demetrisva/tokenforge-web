@@ -1,0 +1,7 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tokenforge-web",
+  "compatibility_date": "2026-10-14",
+  "assets": {"directory": "."},
+  "previews": {}
+}
