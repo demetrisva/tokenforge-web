@@ -15,6 +15,7 @@
   function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
   function tsRow(label,v){
     if(v===undefined)return '';
+    if(typeof v!=='number' || !Number.isFinite(v) || !Number.isFinite(new Date(v*1000).getTime()))return '<tr><th>'+label+'</th><td>Invalid NumericDate</td></tr>';
     var d=new Date(v*1000), now=Date.now(), rel;
     var diff=Math.round((d.getTime()-now)/1000);
     var a=Math.abs(diff), unit;
@@ -22,7 +23,7 @@
     else if(a<86400){unit=Math.round(a/3600)+'h'}else{unit=Math.round(a/86400)+'d'}
     rel = diff<0 ? unit+' ago' : 'in '+unit;
     var cls = (label==='exp') ? (diff<0?'bad':'ok') : '';
-    var state = (label==='exp') ? (diff<0?' <span class="pill bad">expired</span>':' <span class="pill ok">valid</span>') : '';
+    var state = (label==='exp') ? (diff<0?' <span class="pill bad">expired</span>':' <span class="pill ok">not expired</span>') : '';
     return '<tr><th>'+label+'</th><td>'+esc(d.toISOString())+' <span class="muted">('+rel+')</span>'+state+'</td></tr>';
   }
   function decode(){

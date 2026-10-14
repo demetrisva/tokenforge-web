@@ -41,3 +41,9 @@ Every push to `main` publishes automatically. There is no build to break.
   the home and tools pages.
 - Server-lookup: add the page + js here, and the endpoint in `tokenforge-infra`'s
   `tools-api`. Keep SSRF guards on anything that makes outbound connections.
+
+## Toolbox completion
+
+The site now includes local CIDR, random-password, UTF-8 Base64, SHA-2 hashing, numeric cron-field and RouterOS address-list helpers, plus bounded DNS and HTTPS-header lookups. Lookup limits and privacy behavior are documented at `/docs/`. Header presence is not a certification; DNS is a single resolver view; email checks discover records rather than implementing a full SPF evaluator. TLS only connects to validated public IPv4 addresses on port 443 and verifies certificates. `www.tokenforge.eu` is canonical.
+
+Run `node --test tests/*.test.mjs` before publishing. Backend-dependent cards must only ship after the API route passes live browser tests. GitHub pushes to `main` publish automatically through Cloudflare.
