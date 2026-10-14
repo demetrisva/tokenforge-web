@@ -27,13 +27,11 @@ robots.txt
   the Content-Security-Policy, HSTS and the rest, so the site passes its own header
   grader.
 
-## Deploy (Cloudflare Workers static assets)
+## Deployment
 
-1. Cloudflare dashboard → **Workers &amp; Pages → Create → Pages → Connect to Git**.
-2. Pick this repo. Framework preset **None**, build command **empty**, output dir **/**.
-3. Add the custom domain **tokenforge.eu** (and `www` if wanted).
+The connected Cloudflare **tokenforge-web** Worker publishes static assets from this repository. `wrangler.json` defines the asset directory and previews; production hostnames are managed in the Cloudflare dashboard. Every push to `main` triggers Workers Builds. Branches get isolated static previews; backend lookups permit only the production origins.
 
-Every push to `main` publishes automatically. There is no build to break.
+Run `node --test tests/*.test.mjs`, check the branch build, then merge. Check the resulting production build and live tool flows after deployment. There is no frontend compilation step.
 
 ## Adding a tool
 
