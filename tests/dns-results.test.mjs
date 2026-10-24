@@ -13,6 +13,6 @@ test('missing MX, NXDOMAIN and Null MX have distinct messages',()=>{
 });
 test('structured SOA, CAA and TXT answers render as data',()=>{
  assert.match(renderResults({...base,type:'SOA',records:[{nsname:'ns.example.com',serial:123}]}),/123/);
- assert.match(renderResults({...base,type:'CAA',records:[{critical:0,issue:'ca.example'}]}),/ca.example/);
+ const caa=renderResults({...base,type:'CAA',records:[{critical:0,type:'CAA',issue:'ca.example'}]});assert.match(caa,/ca.example/);assert.ok(!caa.includes('<td>type</td>'));
  assert.match(renderResults({...base,type:'TXT',records:['<svg onload=alert(1)>']}),/&lt;svg/);
 });

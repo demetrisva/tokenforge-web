@@ -15,7 +15,7 @@ export function renderResults(data){
   if(data.type==='MX')html+=('null_mx' in data)?table(['Priority','Mail server','Addresses / address TTL'],data.records.map(r=>[r.priority,r.exchange||'.',addressText(r.addresses)])):table(['Priority','Mail server'],data.records.map(r=>[r.priority,r.exchange||'.']));
   else if(['A','AAAA'].includes(data.type))html+=table(['Address','TTL (seconds)'],data.records.map(r=>[r.address,r.ttl]));
   else if(data.type==='SOA')html+=table(['Primary server','Responsible mailbox','Serial','Refresh','Retry','Expire','Minimum'],data.records.map(r=>[r.nsname,r.hostmaster,r.serial,r.refresh,r.retry,r.expire,r.minttl]));
-  else if(data.type==='CAA')html+=table(['Flags','Tag','Value'],data.records.flatMap(r=>Object.entries(r).filter(([k])=>k!=='critical').map(([key,value])=>[r.critical,key,value])));
+  else if(data.type==='CAA')html+=table(['Flags','Tag','Value'],data.records.flatMap(r=>Object.entries(r).filter(([k])=>!['critical','type'].includes(k)).map(([key,value])=>[r.critical,key,value])));
   else html+=table(['Record'],data.records.map(r=>[r]));
  }
  return html+'<p class="muted">Queried at '+escape(data.queried_at)+' (UTC)</p><p class="note">'+escape(data.note)+'</p>';
