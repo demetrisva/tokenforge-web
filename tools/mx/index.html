@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MX lookup - TokenForge</title><meta name="description" content="Find mail servers in priority order and expand their IPv4 and IPv6 addresses.">
+<link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/dns-lookup.css"><link rel="canonical" href="https://www.tokenforge.eu/tools/mx/"></head>
+<body data-tool="mx"><div class="wrap">
+<header class="site"><a class="brand" href="/">&gt;_ tokenforge</a><nav class="site"><a href="/tools/">Tools</a><a href="/docs/">Docs</a><a href="https://status.tokenforge.eu">Status</a></nav></header>
+<p class="crumb"><a href="/tools/">Tools</a> / MX lookup</p>
+<section class="hero"><h1>MX lookup</h1><p>Find mail servers in priority order and expand their IPv4 and IPv6 addresses.</p><p class="note">Results come from one recursive resolver. This is not an authoritative lookup or a worldwide propagation test.</p></section>
+<form id="lookup-form" class="tool lookup-form"><label for="input">Domain</label>
+<input id="input" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" maxlength="253" required aria-describedby="lookup-hint lookup-privacy">
+<p id="lookup-hint" class="note">Enter a DNS name without a URL, path or port.</p>
+<p id="lookup-privacy" class="note">Your query is sent to our lookup API and DNS resolver. Do not submit secrets or private names.</p>
+<button id="run" type="submit">Look up MX</button><p id="lookup-status" role="status"></p></form>
+<section id="result" class="tool" aria-live="polite" aria-busy="false"></section>
+<div class="tool"><h2>Related checks</h2><p><a href="/tools/dns/">Other DNS records</a> · <a href="/tools/spf-dmarc/">SPF, DMARC and MTA-STS</a> · <a href="/tools/ssl/">TLS inspector</a></p><p class="note">These tools discover records; they do not verify email delivery, test SMTP or check blocklists. MX record TTL is unavailable; address TTL is shown where returned.</p></div>
+<footer class="site"><a href="/tools/">All tools</a><a href="https://github.com/demetrisva/tokenforge-web">Source</a></footer></div>
+<script src="/assets/api.js"></script><script type="module" src="/assets/dns-lookup.mjs"></script><script type="module" src="/assets/enhancements.mjs"></script></body></html>

@@ -49,3 +49,13 @@ Run `node --test tests/*.test.mjs` before publishing. Backend-dependent cards mu
 The active Cloudflare project uses Workers Builds. `wrangler.json` supplies static-asset and Preview configuration; `.assetsignore` excludes tests and configuration from the public asset bundle. Backend CORS permits production hostnames only, so lookup forms are tested on the production origin after deployment.
 
 Additional local tools: JSON formatting/minification, URL component encoding, UUID v4 generation, Unix/ISO timestamp conversion, UTF-8 hex conversion and exact IPv4 range-to-CIDR summarisation. Run `node --test tests/*.test.mjs` to validate.
+
+
+## MX and expanded DNS draft
+
+The /tools/mx/ page calls the new /mx API route and expands mail-server addresses.
+The /tools/dns/ page selects A, AAAA, MX, TXT, NS, CNAME, SOA, CAA or PTR. TXT
+accepts service labels; PTR takes an IPv4/IPv6 literal. DNS results are a single
+recursive resolver view. TTL is exposed for A/AAAA only. No SMTP/blocklist checks.
+Deploy and verify the companion tokenforge-infra API change before publishing
+these pages. Keep this branch in draft until API verification and release review.
